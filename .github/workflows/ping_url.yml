@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Check and ping URL
         run: |
-          current_hour=$(TZ=Asia/Tokyo date +'%H')
-          if [ "$current_hour" -ge 5 ] && [ "$current_hour" -lt 23 ]; then
+          current_time=$(TZ=Asia/Tokyo date +'%H:%M')
+          if [[ "$current_time" > "05:29" && "$current_time" < "23:00" ]]; then
             curl -s https://kokuraex.onrender.com/
           else
-            echo "Current time is outside the allowed range (JST 5:00 - 23:00). Skipping URL ping."
+            echo "Current time is outside the allowed range (JST 05:30 - 23:00). Skipping URL ping."
           fi
