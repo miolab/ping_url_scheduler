@@ -1,0 +1,20 @@
+name: Ping URL at intervals during specific hours (JST)
+
+on:
+  schedule:
+    # Runs every 20 minutes
+    - cron: "*/20 * * * *"
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check and ping URL
+        run: |
+          current_time=$(TZ=Asia/Tokyo date +'%H:%M')
+          if [[ "$current_time" > "05:29" && "$current_time" < "23:00" ]]; then
+            curl -s https://kokuraex.onrender.com/
+          else
+            echo "Current time is outside the allowed range (JST 05:30 - 23:00). Skipping URL ping."
+          fi
