@@ -2,8 +2,8 @@ name: Ping URL at intervals during specific hours (JST)
 
 on:
   schedule:
-    # Runs every 20 minutes
-    - cron: "*/20 * * * *"
+    # Runs specified minutes interval
+    - cron: "*/15 * * * *"
 
 jobs:
   ping:
